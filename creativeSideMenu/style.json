@@ -1,0 +1,67 @@
+{
+
+	"QCustomSlideMenu": [{
+		"name": "sideMenuMainCont",
+		"defaultSize": [{
+			"width": 150,
+			"height": "auto"
+		}],
+		"collapsedSize": [{
+			"width": 40,
+			"height": "parent"
+		}],
+		"expandedSize": [{
+			"width": 150,
+			"height": "parent"
+		}],
+		"toggleButton": [{
+			"buttonName": "pushButton",
+			"icons": [{
+				"whenMenuIsCollapsed": ":/icons/icons/align-justify.svg",
+				"whenMenuIsExpanded": ":/icons/icons/chevron-left.svg"
+			}]
+		}],
+		"menuTransitionAnimation": [{
+			"animationDuration": 1000,
+			"animationEasingCurve": "OutBack"
+		}]
+	},{
+		"name": "notification",
+		"floatPosition": [{
+			"relativeTo": "centralwidget",
+			"position": "top-center",
+			"shadow":[{
+				"color": "#000",
+				"blurRadius": 20,
+				"xOffset": 0,
+				"yOffset": 0
+			}]
+		}],
+		"defaultSize": [{
+			"width": 600,
+			"height": 0
+		}],
+		"collapsedSize": [{
+			"width": 600,
+			"height": 0
+		}],
+		"expandedSize": [{
+			"width": 600,
+			"height": 75
+		}],
+		"toggleButton": [{
+			"buttonName": "pushButton_2"
+		}]
+	}],
+	"QCard": [{
+		"cards": [
+			"sideMenuMainCont"
+		],
+		"shadow":[{
+			"color": "#000",
+			"blurRadius": 20,
+			"xOffset": 0,
+			"yOffset": 0
+		}]
+	}]
+}
