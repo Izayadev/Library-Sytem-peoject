@@ -15,214 +15,257 @@
   </property>
   <property name="styleSheet">
    <string notr="true">/*
-background-color: rgb(79, 160, 139);
-ManjaroMix Style Sheet for QT Applications
+Material Dark Style Sheet for QT Applications
 Author: Jaime A. Quiroga P.
+Inspired on https://github.com/jxfwinter/qt-material-stylesheet
 Company: GTRONICK
-Last updated: 25/02/2020, 15:42.
-Available at: https://github.com/GTRONICK/QSS/blob/master/ManjaroMix.qss
+Last updated: 04/12/2018, 15:00.
+Available at: https://github.com/GTRONICK/QSS/blob/master/MaterialDark.qss
 */
 QMainWindow {
-	background-color:#151a1e;
+
+	background-color:#1e1d23;
 }
-QCalendar {
-	background-color: #151a1e;
+QDialog {
+	background-color:#1e1d23;
+}
+QColorDialog {
+	background-color:#1e1d23;
 }
 QTextEdit {
-	border-width: 1px;
-	border-style: solid;
-	border-color: #4fa08b;
-	background-color: #222b2e;
-	color: #d3dae3;
+border-style: solid;
+border-radius:10px;
+	background-color:#1e1d23;
+	color: #a9b7c6;
 }
+
+QTableWidget{
+background-color: rgb(113, 110, 132);
+color: #a9b7c6;
+font:bold;
+}
+
+
 QPlainTextEdit {
-	border-width: 1px;
+	selection-background-color:#007b50;
+	background-color:#1e1d23;
 	border-style: solid;
-	border-color: #4fa08b;
-	background-color: #222b2e;
-	color: #d3dae3;
+border-radius:10px;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-left-color: transparent;
+	border-bottom-color: transparent;
+	border-width: 1px;
+	color: #a9b7c6;
 }
-/*
-Neon Style Sheet for QT Applications (QpushButton)
-Author: Jaime A. Quiroga P.
-Company: GTRONICK
-Last updated: 24/10/2020, 15:42.
-Available at: https://github.com/GTRONICK/QSS/blob/master/NeonButtons.qss
-*/
 QPushButton{
 	border-style: solid;
-	border-color: #050a0e;
+border-radius:8px;
+	font:bold;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-left-color: transparent;
+	border-bottom-color: transparent;
 	border-width: 1px;
-	border-radius: 5px;
-	color: #d3dae3;
+	border-style: solid;
+	color: #a9b7c6;
 	padding: 2px;
-	background-color: #100E19;
+	background-color: #3f3d4a;
 }
 QPushButton::default{
-	border-style: solid;
-	border-color: #050a0e;
+	border-style: inset;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-left-color: transparent;
+	border-bottom-color: #04b97f;
 	border-width: 1px;
-	border-radius: 5px;
-	color: #FFFFFF;
+	color: #a9b7c6;
 	padding: 2px;
-	background-color: #151a1e;
+	background-color: #1e1d23;
+}
+QToolButton {
+	border-style: solid;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-left-color: transparent;
+	border-bottom-color: #04b97f;
+	border-bottom-width: 1px;
+	border-style: solid;
+	color: #a9b7c6;
+	padding: 2px;
+	background-color: #1e1d23;
+}
+QToolButton:hover{
+	border-style: solid;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-left-color: transparent;
+	border-bottom-color: #37efba;
+	border-bottom-width: 2px;
+	border-style: solid;
+	color: #FFFFFF;
+	padding-bottom: 1px;
+	background-color: #1e1d23;
 }
 QPushButton:hover{
 	border-style: solid;
-	border-top-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:1, stop:0 #C0DB50, stop:0.4 #C0DB50, stop:0.5 #100E19, stop:1 #100E19);
-    border-bottom-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:1, stop:0 #100E19, stop:0.5 #100E19, stop:0.6 #C0DB50, stop:1 #C0DB50);
-    border-left-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #C0DB50, stop:0.3 #C0DB50, stop:0.7 #100E19, stop:1 #100E19);
-    border-right-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 #C0DB50, stop:0.3 #C0DB50, stop:0.7 #100E19, stop:1 #100E19);
-	border-width: 2px;
-    border-radius: 1px;
-	color: #d3dae3;
-	padding: 2px;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-left-color: transparent;
+	border-bottom-color: #37efba;
+	border-bottom-width: 1px;
+	border-style: solid;
+	color: #FFFFFF;
+	padding-bottom: 2px;
+	background-color: #1e1d23;
 }
 QPushButton:pressed{
 	border-style: solid;
-	border-top-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:1, stop:0 #d33af1, stop:0.4 #d33af1, stop:0.5 #100E19, stop:1 #100E19);
-    border-bottom-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:1, stop:0 #100E19, stop:0.5 #100E19, stop:0.6 #d33af1, stop:1 #d33af1);
-    border-left-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #d33af1, stop:0.3 #d33af1, stop:0.7 #100E19, stop:1 #100E19);
-    border-right-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 #d33af1, stop:0.3 #d33af1, stop:0.7 #100E19, stop:1 #100E19);
-	border-width: 2px;
-    border-radius: 1px;
-	color: #d3dae3;
-	padding: 2px;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-left-color: transparent;
+	border-bottom-color: #37efba;
+	border-bottom-width: 2px;
+	border-style: solid;
+	color: #37efba;
+	padding-bottom: 1px;
+	background-color: #1e1d23;
+}
+QPushButton:disabled{
+	border-style: solid;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-left-color: transparent;
+	border-bottom-color: #808086;
+	border-bottom-width: 2px;
+	border-style: solid;
+	color: #808086;
+	padding-bottom: 1px;
+	background-color: #1e1d23;
 }
 QLineEdit {
-	border-width: 1px;
+	border-width: 1px; border-radius: 4px;
+	border-color: rgb(58, 58, 58);
 	border-style: solid;
-	border-color: #4fa08b;
-	background-color: #222b2e;
-	color: #d3dae3;
+border-radius:10px;
+	padding: 0 8px;
+	color: #a9b7c6;
+	background:#1e1d23;
+	selection-background-color:#007b50;
+	selection-color: #FFFFFF;
 }
 QLabel {
-	color: #d3dae3;
+	color: #a9b7c6;
+}
+QLabel:hover{
+	color: rgb(63, 61, 74);
 }
 QLCDNumber {
-	color: #4d9b87;
+	color: #37e6b4;
 }
 QProgressBar {
 	text-align: center;
-	color: #d3dae3;
+	color: rgb(240, 240, 240);
+	border-width: 1px; 
 	border-radius: 10px;
-	border-color: transparent;
-	border-style: solid;
-	background-color: #52595d;
+	border-color: rgb(58, 58, 58);
+	border-style: inset;
+	background-color:#1e1d23;
 }
 QProgressBar::chunk {
-	background-color: #214037	;
-	border-radius: 10px;
+	background-color: #04b97f;
+	border-radius: 5px;
 }
 QMenuBar {
-	background-color: #151a1e;
+	background-color: #1e1d23;
 }
 QMenuBar::item {
-	color: #d3dae3;
+	color: #a9b7c6;
   	spacing: 3px;
   	padding: 1px 4px;
-	background-color: #151a1e;
+  	background: #1e1d23;
 }
 
 QMenuBar::item:selected {
-  	background-color: #252a2e;
+  	background:#1e1d23;
 	color: #FFFFFF;
-}
-QMenu {
-	background-color: #151a1e;
 }
 QMenu::item:selected {
-	background-color: #252a2e;
+	border-style: solid;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-left-color: #04b97f;
+	border-bottom-color: transparent;
+	border-left-width: 2px;
 	color: #FFFFFF;
+	padding-left:15px;
+	padding-top:4px;
+	padding-bottom:4px;
+	padding-right:7px;
+	background-color: #1e1d23;
 }
 QMenu::item {
-	color: #d3dae3;
-	background-color: #151a1e;
+	border-style: solid;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-left-color: transparent;
+	border-bottom-color: transparent;
+	border-bottom-width: 1px;
+	border-style: solid;
+	color: #a9b7c6;
+	padding-left:17px;
+	padding-top:4px;
+	padding-bottom:4px;
+	padding-right:7px;
+	background-color: #1e1d23;
+}
+QMenu{
+	background-color:#1e1d23;
 }
 QTabWidget {
 	color:rgb(0,0,0);
-	background-color:#000000;
+	background-color:#1e1d23;
+
+
 }
 QTabWidget::pane {
-		border-color: #050a0e;
-		background-color: #1e282c;
+		border-color: rgb(77,77,77);
+		background-color:#2a2831;
 		border-style: solid;
 		border-width: 1px;
-    	border-bottom-left-radius: 4px;
-		border-bottom-right-radius: 4px;
-}
-QTabBar::tab:first {
-	border-style: solid;
-	border-left-width:1px;
-	border-right-width:0px;
-	border-top-width:1px;
-	border-bottom-width:0px;
-	border-top-color: #050a0e;
-	border-left-color: #050a0e;
-	border-bottom-color: #050a0e;
-	border-top-left-radius: 4px;
-	color: #d3dae3;
-	padding: 3px;
-	margin-left:0px;
-	background-color: #151a1e;
-}
-QTabBar::tab:last {
-	border-style: solid;
-	border-top-width:1px;
-	border-left-width:1px;
-	border-right-width:1px;
-	border-bottom-width:0px;
-	border-color: #050a0e;
-	border-top-right-radius: 4px;
-	color: #d3dae3;
-	padding: 3px;
-	margin-left:0px;
-	background-color: #151a1e;
+    	border-radius: 6px;
 }
 QTabBar::tab {
 	border-style: solid;
-	border-top-width:1px;
-	border-bottom-width:0px;
-	border-left-width:1px;
-	border-top-color: #050a0e;
-	border-left-color: #050a0e;
-	border-bottom-color: #050a0e;
-	color: #d3dae3;
+border-radius:5px;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-left-color: transparent;
+	border-bottom-color: transparent;
+	border-bottom-width: 1px;
+	border-style: solid;
+	color: #808086;
 	padding: 3px;
-	margin-left:0px;
-	background-color: #151a1e;
+	margin-left:3px;
+	background-color: #1e1d23;
 }
 QTabBar::tab:selected, QTabBar::tab:last:selected, QTabBar::tab:hover {
   	border-style: solid;
-  	border-left-width:1px;
-	border-bottom-width:0px;
+	border-top-color: transparent;
 	border-right-color: transparent;
-	border-top-color: #050a0e;
-	border-left-color: #050a0e;
-	border-bottom-color: #050a0e;
+	border-left-color: transparent;
+	border-bottom-color: #04b97f;
+	border-bottom-width: 2px;
+	border-style: solid;
 	color: #FFFFFF;
-	padding: 3px;
-	margin-left:0px;
-	background-color: #1e282c;
-}
-
-QTabBar::tab:selected, QTabBar::tab:first:selected, QTabBar::tab:hover {
-  	border-style: solid;
-  	border-left-width:1px;
-  	border-bottom-width:0px;
-  	border-top-width:1px;
-	border-right-color: transparent;
-	border-top-color: #050a0e;
-	border-left-color: #050a0e;
-	border-bottom-color: #050a0e;
-	color: #FFFFFF;
-	padding: 3px;
-	margin-left:0px;
-	background-color: #1e282c;
+	padding-left: 3px;
+	padding-bottom: 2px;
+	margin-left:3px;
+	background-color: #1e1d23;
 }
 
 QCheckBox {
-	color: #d3dae3;
+	color: #a9b7c6;
 	padding: 2px;
 }
 QCheckBox:disabled {
@@ -238,7 +281,8 @@ QCheckBox:hover {
 	padding-bottom: 1px;
 	padding-top: 1px;
 	border-width:1px;
-	border-color: transparent;
+	border-color: rgb(87, 97, 106);
+	background-color:#1e1d23;
 }
 QCheckBox::indicator:checked {
 
@@ -246,10 +290,9 @@ QCheckBox::indicator:checked {
 	width: 10px;
 	border-style:solid;
 	border-width: 1px;
-	border-color: #4fa08b;
-	color: #000000;
-	
-	background-color: rgb(255, 255, 255);
+	border-color: #04b97f;
+	color: #a9b7c6;
+	background-color: #04b97f;
 }
 QCheckBox::indicator:unchecked {
 
@@ -257,11 +300,13 @@ QCheckBox::indicator:unchecked {
 	width: 10px;
 	border-style:solid;
 	border-width: 1px;
-	border-color: #4fa08b;
-	color: #000000;
+	border-color: #04b97f;
+	color: #a9b7c6;
+	background-color: transparent;
 }
 QRadioButton {
-	color: #d3dae3;
+	color: #a9b7c6;
+	background-color: #1e1d23;
 	padding: 1px;
 }
 QRadioButton::indicator:checked {
@@ -270,9 +315,9 @@ QRadioButton::indicator:checked {
 	border-style:solid;
 	border-radius:5px;
 	border-width: 1px;
-	border-color: #4fa08b;
+	border-color: #04b97f;
 	color: #a9b7c6;
-	background-color: qradialgradient(cx:0.5, cy:0.5, radius:0.4,fx:0.5, fy:0.5, stop:0 #4fa08b, stop:1 #1e282c);
+	background-color: #04b97f;
 }
 QRadioButton::indicator:!checked {
 	height: 10px;
@@ -280,7 +325,7 @@ QRadioButton::indicator:!checked {
 	border-style:solid;
 	border-radius:5px;
 	border-width: 1px;
-	border-color: #4fa08b;
+	border-color: #04b97f;
 	color: #a9b7c6;
 	background-color: transparent;
 }
@@ -288,227 +333,103 @@ QStatusBar {
 	color:#027f7f;
 }
 QSpinBox {
-	color: #d3dae3;
-	background-color: #222b2e;
-	border-width: 1px;
-	border-style: solid;
-	border-color: #4fa08b;
+	color: #a9b7c6;	
+	background-color: #1e1d23;
 }
 QDoubleSpinBox {
-	color: #d3dae3;
-	background-color: #222b2e;
-	border-width: 1px;
-	border-style: solid;
-	border-color: #4fa08b;
+	color: #a9b7c6;	
+	background-color: #1e1d23;
 }
 QTimeEdit {
-	color: #d3dae3;
-	background-color: #222b2e;
-	border-width: 1px;
-	border-style: solid;
-	border-color: #4fa08b;
+	color: #a9b7c6;	
+	background-color: #1e1d23;
 }
 QDateTimeEdit {
-	color: #d3dae3;
-	background-color: #222b2e;
-	border-width: 1px;
-	border-style: solid;
-	border-color: #4fa08b;
+border-radius:10px;
+	color: #a9b7c6;	
+	background-color: #1e1d23;
+padding-left:10px;
 }
 QDateEdit {
-	color: #d3dae3;
-	background-color: #222b2e;
-	border-width: 1px;
-	border-style: solid;
-	border-color: #4fa08b;
-}
-QFontComboBox {
-	color: #d3dae3;
-	background-color: #222b2e;
-	border-width: 1px;
-	border-style: solid;
-	border-color: #4fa08b;
+	color: #a9b7c6;	
+	background-color: #1e1d23;
 }
 QComboBox {
-	color: #d3dae3;
-	background-color: #222b2e;
-	border-width: 1px;
-	border-style: solid;
-	border-color: #4fa08b;
+	color: #a9b7c6;	
+	background: #1e1d23;
+border-style: solid;
+border-radius:10px;
+padding-left:15px;
 }
 
-QDial {
-	background: #16a085;
-}
+QComboBox:editable {
+background: #a0524f;
+	
+	color: #a9b7c6;
 
+}
+QComboBox QAbstractItemView {
+	color: #a9b7c6;	
+	background: #4e4b5b;
+	selection-color: #FFFFFF;
+}
+QComboBox:!editable:on, QComboBox::drop-down:editable:on {
+	color: #a9b7c6;	
+	background: #a0524f;
+}
+QFontComboBox {
+	color: #a9b7c6;	
+	background-color: #a0524f;;
+}
 QToolBox {
 	color: #a9b7c6;
-	background-color: #222b2e;
+	background-color: #1e1d23;
 }
 QToolBox::tab {
 	color: #a9b7c6;
-	background-color:#222b2e;
+	background-color: #1e1d23;
 }
 QToolBox::tab:selected {
 	color: #FFFFFF;
-	background-color:#222b2e;
+	background-color: #1e1d23;
 }
 QScrollArea {
 	color: #FFFFFF;
-	background-color:#222b2e;
+	background-color: #1e1d23;
 }
 QSlider::groove:horizontal {
 	height: 5px;
-	background-color: #52595d;
+	background: #04b97f;
 }
 QSlider::groove:vertical {
 	width: 5px;
-	background-color: #52595d;
+	background: #04b97f;
 }
 QSlider::handle:horizontal {
-	background: #1a2224;
-	border-style: solid;
-	border-width: 1px;
-	border-color: rgb(207,207,207);
-	width: 12px;
+	background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #b4b4b4, stop:1 #8f8f8f);
+	border: 1px solid #5c5c5c;
+	width: 14px;
 	margin: -5px 0;
 	border-radius: 7px;
 }
 QSlider::handle:vertical {
-	background: #1a2224;
-	border-style: solid;
-	border-width: 1px;
-	border-color: rgb(207,207,207);
-	height: 12px;
+	background: qlineargradient(x1:1, y1:1, x2:0, y2:0, stop:0 #b4b4b4, stop:1 #8f8f8f);
+	border: 1px solid #5c5c5c;
+	height: 14px;
 	margin: 0 -5px;
 	border-radius: 7px;
 }
 QSlider::add-page:horizontal {
-    background: #52595d;
+    background: white;
 }
 QSlider::add-page:vertical {
-    background: #52595d;
+    background: white;
 }
 QSlider::sub-page:horizontal {
-    background-color: #15433a;
+    background: #04b97f;
 }
 QSlider::sub-page:vertical {
-    background-color: #15433a;
-}
-QScrollBar:horizontal {
-	max-height: 10px;
-	border: 1px transparent grey;
-	margin: 0px 20px 0px 20px;
-	background: transparent;
-}
-QScrollBar:vertical {
-	max-width: 10px;
-	border: 1px transparent grey;
-	margin: 20px 0px 20px 0px;
-	background: transparent;
-}
-QScrollBar::handle:horizontal {
-	background: #52595d;
-	border-style: transparent;
-	border-radius: 4px;
-	min-width: 25px;
-}
-QScrollBar::handle:horizontal:hover {
-	background: #58a492;
-	border-style: transparent;
-	border-radius: 4px;
-	min-width: 25px;
-}
-QScrollBar::handle:vertical {
-	background: #52595d;
-	border-style: transparent;
-	border-radius: 4px;
-	min-height: 25px;
-}
-QScrollBar::handle:vertical:hover {
-	background: #58a492;
-	border-style: transparent;
-	border-radius: 4px;
-	min-height: 25px;
-}
-QScrollBar::add-line:horizontal {
-   border: 2px transparent grey;
-   border-top-right-radius: 4px;
-   border-bottom-right-radius: 4px;
-   background: #15433a;
-   width: 20px;
-   subcontrol-position: right;
-   subcontrol-origin: margin;
-}
-QScrollBar::add-line:horizontal:pressed {
-   border: 2px transparent grey;
-   border-top-right-radius: 4px;
-   border-bottom-right-radius: 4px;
-   background: rgb(181,181,181);
-   width: 20px;
-   subcontrol-position: right;
-   subcontrol-origin: margin;
-}
-QScrollBar::add-line:vertical {
-   border: 2px transparent grey;
-   border-bottom-left-radius: 4px;
-   border-bottom-right-radius: 4px;
-   background: #15433a;
-   height: 20px;
-   subcontrol-position: bottom;
-   subcontrol-origin: margin;
-}
-QScrollBar::add-line:vertical:pressed {
-   border: 2px transparent grey;
-   border-bottom-left-radius: 4px;
-   border-bottom-right-radius: 4px;
-   background: rgb(181,181,181);
-   height: 20px;
-   subcontrol-position: bottom;
-   subcontrol-origin: margin;
-}
-QScrollBar::sub-line:horizontal {
-   border: 2px transparent grey;
-   border-top-left-radius: 4px;
-   border-bottom-left-radius: 4px;
-   background: #15433a;
-   width: 20px;
-   subcontrol-position: left;
-   subcontrol-origin: margin;
-}
-QScrollBar::sub-line:horizontal:pressed {
-   border: 2px transparent grey;
-   border-top-left-radius: 4px;
-   border-bottom-left-radius: 4px;
-   background: rgb(181,181,181);
-   width: 20px;
-   subcontrol-position: left;
-   subcontrol-origin: margin;
-}
-QScrollBar::sub-line:vertical {
-   border: 2px transparent grey;
-   border-top-left-radius: 4px;
-   border-top-right-radius: 4px;
-   background: #15433a;
-   height: 20px;
-   subcontrol-position: top;
-   subcontrol-origin: margin;
-}
-QScrollBar::sub-line:vertical:pressed {
-   border: 2px transparent grey;
-   border-top-left-radius: 4px;
-   border-top-right-radius: 4px;
-   background: rgb(181,181,181);
-   height: 20px;
-   subcontrol-position: top;
-   subcontrol-origin: margin;
-}
-
-QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
-   background: none;
-}
-QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
-   background: none;
+    background: #04b97f;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -518,7 +439,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
       <x>220</x>
       <y>0</y>
       <width>881</width>
-      <height>561</height>
+      <height>591</height>
      </rect>
     </property>
     <property name="font">
@@ -529,8 +450,14 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
       <bold>true</bold>
      </font>
     </property>
+    <property name="tabPosition">
+     <enum>QTabWidget::North</enum>
+    </property>
+    <property name="tabShape">
+     <enum>QTabWidget::Rounded</enum>
+    </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>9</number>
     </property>
     <widget class="QWidget" name="tab_31">
      <attribute name="title">
@@ -691,6 +618,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
       <property name="font">
        <font>
         <pointsize>11</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -746,6 +676,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
       <property name="font">
        <font>
         <pointsize>11</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -764,6 +697,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
       <property name="font">
        <font>
         <pointsize>11</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -970,7 +906,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
         <x>0</x>
         <y>0</y>
         <width>881</width>
-        <height>571</height>
+        <height>601</height>
        </rect>
       </property>
       <property name="font">
@@ -982,7 +918,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
        </font>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_15">
        <attribute name="title">
@@ -1037,6 +973,15 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
           <width>761</width>
           <height>361</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTableWidget{
+	selection-background-color: rgb(42, 40, 49);
+background-color: rgb(113, 110, 132);
+	color: rgb(191, 186, 222);
+	border-left-color: rgb(0, 0, 0);
+font:bold;
+}</string>
         </property>
         <column>
          <property name="text">
@@ -1295,10 +1240,10 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
         </property>
         <property name="geometry">
          <rect>
-          <x>290</x>
-          <y>440</y>
+          <x>340</x>
+          <y>470</y>
           <width>151</width>
-          <height>51</height>
+          <height>41</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -1321,7 +1266,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>60</y>
+          <y>120</y>
           <width>331</width>
           <height>41</height>
          </rect>
@@ -1347,7 +1292,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>120</y>
+          <y>180</y>
           <width>331</width>
           <height>261</height>
          </rect>
@@ -1432,6 +1377,74 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
         </property>
         <property name="placeholderText">
          <string>Example -&gt; 50</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_19">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>10</y>
+          <width>119</width>
+          <height>100</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
+        <property name="midLineWidth">
+         <number>1</number>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_17">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>40</y>
+          <width>100</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>46</horstretch>
+          <verstretch>21</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>39</width>
+          <height>61</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Add Picture</string>
         </property>
        </widget>
       </widget>
@@ -1766,6 +1779,46 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
          <string>Quantity</string>
         </property>
        </widget>
+       <widget class="QLabel" name="label_20">
+        <property name="geometry">
+         <rect>
+          <x>730</x>
+          <y>10</y>
+          <width>119</width>
+          <height>100</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
+        <property name="midLineWidth">
+         <number>1</number>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
       </widget>
      </widget>
     </widget>
@@ -1779,7 +1832,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
         <x>0</x>
         <y>0</y>
         <width>881</width>
-        <height>571</height>
+        <height>601</height>
        </rect>
       </property>
       <property name="font">
@@ -2280,8 +2333,657 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
-      <string>Page</string>
+      <string>Dashbourd</string>
      </attribute>
+     <widget class="QTabWidget" name="tabWidget_6">
+      <property name="geometry">
+       <rect>
+        <x>-4</x>
+        <y>0</y>
+        <width>891</width>
+        <height>601</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab_8">
+       <attribute name="title">
+        <string>Main</string>
+       </attribute>
+       <widget class="QLabel" name="label_44">
+        <property name="geometry">
+         <rect>
+          <x>316</x>
+          <y>180</y>
+          <width>191</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Details for Month Name</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QFrame" name="frame_8">
+        <property name="geometry">
+         <rect>
+          <x>676</x>
+          <y>380</y>
+          <width>131</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <property name="midLineWidth">
+         <number>1</number>
+        </property>
+        <widget class="QLabel" name="label_30">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Outcone</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QFrame" name="frame_3">
+        <property name="geometry">
+         <rect>
+          <x>266</x>
+          <y>240</y>
+          <width>131</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <property name="midLineWidth">
+         <number>1</number>
+        </property>
+        <widget class="QLabel" name="label_24">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Retrieve</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QPushButton" name="pushButton_9">
+        <property name="geometry">
+         <rect>
+          <x>626</x>
+          <y>50</y>
+          <width>171</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Send Offers into Emails</string>
+        </property>
+       </widget>
+       <widget class="QFrame" name="frame_2">
+        <property name="geometry">
+         <rect>
+          <x>476</x>
+          <y>240</y>
+          <width>131</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <property name="midLineWidth">
+         <number>1</number>
+        </property>
+        <widget class="QLabel" name="label_31">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Total Works</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QFrame" name="frame_6">
+        <property name="geometry">
+         <rect>
+          <x>266</x>
+          <y>380</y>
+          <width>131</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <property name="midLineWidth">
+         <number>1</number>
+        </property>
+        <widget class="QLabel" name="label_32">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Vistors</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="label_90">
+        <property name="geometry">
+         <rect>
+          <x>219</x>
+          <y>80</y>
+          <width>141</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Direction</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QFrame" name="frame_5">
+        <property name="geometry">
+         <rect>
+          <x>66</x>
+          <y>380</y>
+          <width>131</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <property name="midLineWidth">
+         <number>1</number>
+        </property>
+        <widget class="QLabel" name="label_91">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>New Client</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QFrame" name="frame_4">
+        <property name="geometry">
+         <rect>
+          <x>676</x>
+          <y>240</y>
+          <width>131</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <property name="midLineWidth">
+         <number>1</number>
+        </property>
+        <widget class="QLabel" name="label_92">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>New  Books</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="label_93">
+        <property name="geometry">
+         <rect>
+          <x>219</x>
+          <y>40</y>
+          <width>141</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Branch Name</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QFrame" name="frame">
+        <property name="geometry">
+         <rect>
+          <x>66</x>
+          <y>239</y>
+          <width>131</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <property name="midLineWidth">
+         <number>1</number>
+        </property>
+        <widget class="QLabel" name="label_94">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Rent</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QPushButton" name="pushButton_18">
+        <property name="geometry">
+         <rect>
+          <x>606</x>
+          <y>90</y>
+          <width>221</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Send Special Message for Client</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_95">
+        <property name="geometry">
+         <rect>
+          <x>219</x>
+          <y>120</y>
+          <width>141</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Admin Name</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QFrame" name="frame_7">
+        <property name="geometry">
+         <rect>
+          <x>476</x>
+          <y>380</y>
+          <width>131</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <property name="midLineWidth">
+         <number>1</number>
+        </property>
+        <widget class="QLabel" name="label_96">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Income</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="label_97">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>40</y>
+          <width>119</width>
+          <height>100</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
+        <property name="midLineWidth">
+         <number>1</number>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_9">
+       <attribute name="title">
+        <string>Send Emails</string>
+       </attribute>
+       <widget class="QLineEdit" name="lineEdit_22">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>67</y>
+          <width>251</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Sebject</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_98">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>40</y>
+          <width>58</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Subject</string>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="plainTextEdit">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>130</y>
+          <width>251</width>
+          <height>251</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Message Text</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_99">
+        <property name="geometry">
+         <rect>
+          <x>637</x>
+          <y>50</y>
+          <width>101</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Send To Range</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboBox_2">
+        <property name="geometry">
+         <rect>
+          <x>590</x>
+          <y>80</y>
+          <width>211</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Top 10 Clients</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Top Clients</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Top Vistors</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Top Renters</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Top Reader</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QPushButton" name="pushButton_19">
+        <property name="geometry">
+         <rect>
+          <x>590</x>
+          <y>210</y>
+          <width>211</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Send Emails</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_10">
+       <attribute name="title">
+        <string>Specail Message</string>
+       </attribute>
+       <widget class="QLabel" name="label_102">
+        <property name="geometry">
+         <rect>
+          <x>630</x>
+          <y>170</y>
+          <width>101</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>From</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_103">
+        <property name="geometry">
+         <rect>
+          <x>633</x>
+          <y>210</y>
+          <width>101</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>To </string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_57">
+        <property name="geometry">
+         <rect>
+          <x>613</x>
+          <y>120</y>
+          <width>221</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Client Name</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_20">
+        <property name="geometry">
+         <rect>
+          <x>613</x>
+          <y>390</y>
+          <width>211</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Send Emails</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_100">
+        <property name="geometry">
+         <rect>
+          <x>313</x>
+          <y>80</y>
+          <width>58</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Subject</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_56">
+        <property name="geometry">
+         <rect>
+          <x>303</x>
+          <y>107</y>
+          <width>251</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Sebject</string>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="plainTextEdit_2">
+        <property name="geometry">
+         <rect>
+          <x>303</x>
+          <y>170</y>
+          <width>251</width>
+          <height>251</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Message Text</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_101">
+        <property name="geometry">
+         <rect>
+          <x>660</x>
+          <y>90</y>
+          <width>101</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Send To </string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
@@ -2301,6 +3003,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
         <family>Ubuntu</family>
         <pointsize>10</pointsize>
         <weight>75</weight>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -2420,6 +3123,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
         <family>Ubuntu</family>
         <pointsize>10</pointsize>
         <weight>75</weight>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -2439,6 +3143,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
       <property name="font">
        <font>
         <weight>75</weight>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -2538,7 +3243,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
         <x>0</x>
         <y>0</y>
         <width>881</width>
-        <height>571</height>
+        <height>601</height>
        </rect>
       </property>
       <property name="font">
@@ -2806,6 +3511,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
           <height>26</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">padding-left:10px;</string>
+        </property>
        </widget>
        <widget class="QPushButton" name="pushButton_35">
         <property name="geometry">
@@ -2945,6 +3653,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
           <height>24</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <item>
          <property name="text">
           <string>----------------------</string>
@@ -3027,7 +3738,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
         <x>0</x>
         <y>0</y>
         <width>881</width>
-        <height>571</height>
+        <height>601</height>
        </rect>
       </property>
       <property name="font">
@@ -3039,7 +3750,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
        </font>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab_24">
        <attribute name="title">
@@ -3513,6 +4224,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
            <family>Ubuntu</family>
            <pointsize>9</pointsize>
            <weight>75</weight>
+           <italic>false</italic>
            <bold>true</bold>
           </font>
          </property>
@@ -3753,6 +4465,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
            <family>Ubuntu</family>
            <pointsize>9</pointsize>
            <weight>75</weight>
+           <italic>false</italic>
            <bold>true</bold>
           </font>
          </property>
@@ -3777,6 +4490,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
            <family>Ubuntu</family>
            <pointsize>9</pointsize>
            <weight>75</weight>
+           <italic>false</italic>
            <bold>true</bold>
           </font>
          </property>
@@ -4050,6 +4764,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
             <family>Ubuntu</family>
             <pointsize>9</pointsize>
             <weight>75</weight>
+            <italic>false</italic>
             <bold>true</bold>
            </font>
           </property>
@@ -4733,8 +5448,8 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
        <widget class="QLabel" name="label_63">
         <property name="geometry">
          <rect>
-          <x>100</x>
-          <y>55</y>
+          <x>110</x>
+          <y>90</y>
           <width>121</width>
           <height>31</height>
          </rect>
@@ -4820,7 +5535,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
        <widget class="QPushButton" name="pushButton_42">
         <property name="geometry">
          <rect>
-          <x>250</x>
+          <x>370</x>
           <y>360</y>
           <width>191</width>
           <height>41</height>
@@ -4834,7 +5549,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
         <property name="geometry">
          <rect>
           <x>230</x>
-          <y>55</y>
+          <y>90</y>
           <width>261</width>
           <height>31</height>
          </rect>
@@ -4843,7 +5558,181 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
          <string>Please Enter Mail Here</string>
         </property>
        </widget>
+       <widget class="QLabel" name="label_110">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>40</y>
+          <width>291</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Your Mail</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_66">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>40</y>
+          <width>61</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Change</string>
+        </property>
+       </widget>
       </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_11">
+     <attribute name="title">
+      <string>Profile</string>
+     </attribute>
+     <widget class="QLabel" name="label_104">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>50</y>
+        <width>119</width>
+        <height>100</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Sunken</enum>
+      </property>
+      <property name="lineWidth">
+       <number>0</number>
+      </property>
+      <property name="midLineWidth">
+       <number>1</number>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_105">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>50</y>
+        <width>181</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_106">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>80</y>
+        <width>191</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Email</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_107">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>110</y>
+        <width>201</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Join Date</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_108">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>10</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>My Profile</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame_9">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>240</y>
+        <width>271</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <property name="midLineWidth">
+       <number>1</number>
+      </property>
+      <widget class="QLabel" name="label_109">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>10</y>
+         <width>111</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Total Works</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="pushButton_21">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>490</y>
+        <width>90</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Log out</string>
+      </property>
      </widget>
     </widget>
    </widget>
@@ -4860,6 +5749,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
      <font>
       <family>Lohit Gurmukhi</family>
       <pointsize>11</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -4892,6 +5784,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
      <font>
       <family>Liberation Mono</family>
       <pointsize>12</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -4924,6 +5819,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
      <font>
       <family>Liberation Mono</family>
       <pointsize>12</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -4956,6 +5854,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
      <font>
       <family>Liberation Mono</family>
       <pointsize>12</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -4988,10 +5889,13 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
      <font>
       <family>Liberation Mono</family>
       <pointsize>11</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
-     <string>Dashboard</string>
+     <string>Dashbourd</string>
     </property>
     <property name="icon">
      <iconset>
@@ -5020,6 +5924,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
      <font>
       <family>Liberation Mono</family>
       <pointsize>12</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -5052,6 +5959,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
      <font>
       <family>Liberation Mono</family>
       <pointsize>12</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -5120,6 +6030,177 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton_6</tabstop>
+  <tabstop>pushButton_5</tabstop>
+  <tabstop>pushButton_4</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>pushButton_7</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>lineEdit_4</tabstop>
+  <tabstop>lineEdit_7</tabstop>
+  <tabstop>comboBox</tabstop>
+  <tabstop>lineEdit_10</tabstop>
+  <tabstop>pushButton_8</tabstop>
+  <tabstop>tableWidget</tabstop>
+  <tabstop>tabWidget_2</tabstop>
+  <tabstop>lineEdit_5</tabstop>
+  <tabstop>comboBox_3</tabstop>
+  <tabstop>pushButton_10</tabstop>
+  <tabstop>tableWidget_3</tabstop>
+  <tabstop>pushButton_12</tabstop>
+  <tabstop>pushButton_11</tabstop>
+  <tabstop>lineEdit_6</tabstop>
+  <tabstop>textEdit</tabstop>
+  <tabstop>comboBox_4</tabstop>
+  <tabstop>lineEdit_11</tabstop>
+  <tabstop>lineEdit_47</tabstop>
+  <tabstop>lineEdit_49</tabstop>
+  <tabstop>comboBox_8</tabstop>
+  <tabstop>comboBox_6</tabstop>
+  <tabstop>comboBox_7</tabstop>
+  <tabstop>lineEdit_50</tabstop>
+  <tabstop>lineEdit_54</tabstop>
+  <tabstop>pushButton_13</tabstop>
+  <tabstop>tabWidget_3</tabstop>
+  <tabstop>lineEdit_46</tabstop>
+  <tabstop>comboBox_36</tabstop>
+  <tabstop>pushButton_26</tabstop>
+  <tabstop>tableWidget_5</tabstop>
+  <tabstop>pushButton_45</tabstop>
+  <tabstop>pushButton_44</tabstop>
+  <tabstop>lineEdit_13</tabstop>
+  <tabstop>lineEdit_14</tabstop>
+  <tabstop>lineEdit_16</tabstop>
+  <tabstop>lineEdit_18</tabstop>
+  <tabstop>pushButton_27</tabstop>
+  <tabstop>lineEdit_21</tabstop>
+  <tabstop>comboBox_37</tabstop>
+  <tabstop>pushButton_28</tabstop>
+  <tabstop>lineEdit_17</tabstop>
+  <tabstop>lineEdit_15</tabstop>
+  <tabstop>lineEdit_20</tabstop>
+  <tabstop>lineEdit_19</tabstop>
+  <tabstop>pushButton_29</tabstop>
+  <tabstop>pushButton_30</tabstop>
+  <tabstop>comboBox_28</tabstop>
+  <tabstop>comboBox_26</tabstop>
+  <tabstop>pushButton_33</tabstop>
+  <tabstop>tableWidget_6</tabstop>
+  <tabstop>pushButton_47</tabstop>
+  <tabstop>tabWidget_5</tabstop>
+  <tabstop>dateTimeEdit</tabstop>
+  <tabstop>dateTimeEdit_2</tabstop>
+  <tabstop>comboBox_9</tabstop>
+  <tabstop>pushButton_34</tabstop>
+  <tabstop>tableWidget_7</tabstop>
+  <tabstop>pushButton_49</tabstop>
+  <tabstop>dateTimeEdit_4</tabstop>
+  <tabstop>dateTimeEdit_3</tabstop>
+  <tabstop>textEdit_39</tabstop>
+  <tabstop>pushButton_35</tabstop>
+  <tabstop>lineEdit_31</tabstop>
+  <tabstop>tableWidget_8</tabstop>
+  <tabstop>pushButton_50</tabstop>
+  <tabstop>comboBox_31</tabstop>
+  <tabstop>comboBox_32</tabstop>
+  <tabstop>pushButton_43</tabstop>
+  <tabstop>lineEdit_8</tabstop>
+  <tabstop>tableWidget_9</tabstop>
+  <tabstop>pushButton_51</tabstop>
+  <tabstop>comboBox_29</tabstop>
+  <tabstop>pushButton_39</tabstop>
+  <tabstop>checkBox</tabstop>
+  <tabstop>checkBox_2</tabstop>
+  <tabstop>checkBox_3</tabstop>
+  <tabstop>checkBox_26</tabstop>
+  <tabstop>checkBox_27</tabstop>
+  <tabstop>checkBox_30</tabstop>
+  <tabstop>checkBox_4</tabstop>
+  <tabstop>checkBox_5</tabstop>
+  <tabstop>checkBox_6</tabstop>
+  <tabstop>checkBox_28</tabstop>
+  <tabstop>checkBox_29</tabstop>
+  <tabstop>checkBox_31</tabstop>
+  <tabstop>checkBox_7</tabstop>
+  <tabstop>checkBox_8</tabstop>
+  <tabstop>checkBox_9</tabstop>
+  <tabstop>checkBox_10</tabstop>
+  <tabstop>checkBox_11</tabstop>
+  <tabstop>checkBox_12</tabstop>
+  <tabstop>checkBox_32</tabstop>
+  <tabstop>checkBox_21</tabstop>
+  <tabstop>checkBox_20</tabstop>
+  <tabstop>checkBox_19</tabstop>
+  <tabstop>checkBox_23</tabstop>
+  <tabstop>checkBox_22</tabstop>
+  <tabstop>checkBox_24</tabstop>
+  <tabstop>checkBox_33</tabstop>
+  <tabstop>pushButton_40</tabstop>
+  <tabstop>checkBox_25</tabstop>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>lineEdit_2</tabstop>
+  <tabstop>pushButton_52</tabstop>
+  <tabstop>pushButton_46</tabstop>
+  <tabstop>lineEdit_3</tabstop>
+  <tabstop>pushButton_53</tabstop>
+  <tabstop>pushButton_55</tabstop>
+  <tabstop>pushButton_54</tabstop>
+  <tabstop>lineEdit_35</tabstop>
+  <tabstop>lineEdit_53</tabstop>
+  <tabstop>lineEdit_36</tabstop>
+  <tabstop>lineEdit_37</tabstop>
+  <tabstop>pushButton_38</tabstop>
+  <tabstop>lineEdit_43</tabstop>
+  <tabstop>lineEdit_44</tabstop>
+  <tabstop>pushButton_36</tabstop>
+  <tabstop>lineEdit_40</tabstop>
+  <tabstop>lineEdit_41</tabstop>
+  <tabstop>lineEdit_38</tabstop>
+  <tabstop>lineEdit_52</tabstop>
+  <tabstop>lineEdit_42</tabstop>
+  <tabstop>lineEdit_39</tabstop>
+  <tabstop>pushButton_56</tabstop>
+  <tabstop>pushButton_41</tabstop>
+  <tabstop>lineEdit_9</tabstop>
+  <tabstop>pushButton_42</tabstop>
+  <tabstop>lineEdit_45</tabstop>
+  <tabstop>comboBox_30</tabstop>
+  <tabstop>dateEdit</tabstop>
+  <tabstop>tableWidget_10</tabstop>
+  <tabstop>pushButton_14</tabstop>
+  <tabstop>textEdit_3</tabstop>
+  <tabstop>pushButton_16</tabstop>
+  <tabstop>comboBox_5</tabstop>
+  <tabstop>lineEdit_48</tabstop>
+  <tabstop>lineEdit_12</tabstop>
+  <tabstop>comboBox_13</tabstop>
+  <tabstop>comboBox_10</tabstop>
+  <tabstop>comboBox_12</tabstop>
+  <tabstop>lineEdit_51</tabstop>
+  <tabstop>lineEdit_55</tabstop>
+  <tabstop>pushButton_15</tabstop>
+  <tabstop>lineEdit_33</tabstop>
+  <tabstop>timeEdit</tabstop>
+  <tabstop>tabWidget_4</tabstop>
+  <tabstop>lineEdit_23</tabstop>
+  <tabstop>lineEdit_24</tabstop>
+  <tabstop>lineEdit_25</tabstop>
+  <tabstop>pushButton_24</tabstop>
+  <tabstop>lineEdit_27</tabstop>
+  <tabstop>lineEdit_26</tabstop>
+  <tabstop>pushButton_25</tabstop>
+  <tabstop>lineEdit_28</tabstop>
+  <tabstop>lineEdit_29</tabstop>
+  <tabstop>lineEdit_34</tabstop>
+  <tabstop>comboBox_25</tabstop>
+  <tabstop>pushButton_32</tabstop>
+  <tabstop>lineEdit_32</tabstop>
+  <tabstop>pushButton_31</tabstop>
+  <tabstop>lineEdit_30</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -11,16 +11,23 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.uic import loadUiType
 
-import sys , sqlite3
+import sys , sqlite3 , Tools
 from xlsxwriter import *
 
 import login1
-# from database_file import Branch
 
 MainUI,_ = loadUiType('main.ui')
+
+#### Default data ####
+
 # employee_id & branch_id for history ,check database
 employee_id = 0
 branch_id = 0
+
+# Default Image for Book
+default_book_image = '/home/izy/Desktop/Library System/wBook.png'
+use_book = 1
+
 
 class Main(QMainWindow , MainUI):
 
@@ -62,6 +69,7 @@ class Main(QMainWindow , MainUI):
         self.Retrieve()
 
 
+        
         
 
 
@@ -141,6 +149,10 @@ class Main(QMainWindow , MainUI):
         self.pushButton_50.clicked.connect(self.All_Clients_Reports)
         self.pushButton_51.clicked.connect(self.All_Employeies_Reports)
 
+        # Open Image
+        self.pushButton_17.clicked.connect(self.getImage)
+
+        
         
         
                
@@ -629,6 +641,7 @@ class Main(QMainWindow , MainUI):
 
     # Show the Books in The Table.
     def Show_All_Books(self):
+
         # self.tableWidget_3.insertRow(0) # create row
         
         # Get Data from Database.
@@ -674,13 +687,36 @@ class Main(QMainWindow , MainUI):
 
 
 
+    # Open a Dialog Window and Get Pecture for Books or a Profile
+    def getImage(self):
+        global use_book , img_name
+        # Default image
+        # default_image = '/home/izy/Desktop/Library System/wBook.png'
+        # self.pixmap = QPixmap(default_image)
+
+        # Open Dialog and Get Picture
+        img_name = QFileDialog.getOpenFileName(self, "Get the Image", "/home/izy/Desktop/Library System", "All Files (*);;PNG Files (*.png)")
+
+        # Open The Image this run
+        self.pixmap = QPixmap(img_name[0])
+
+        # Add Image to Label
+        self.label_19.setPixmap(self.pixmap)
+
+        # Change use_book variable statue
+        use_book = 0
+
+
+
+        
+
 
 
 
     # Add New Book to Database
     def Add_New_Book(self):
          
-        # Get Data from GUI
+        # Get Data from GUI [Fields]
         book_title = self.lineEdit_6.text()
         book_price = self.lineEdit_11.text()
         book_code = self.lineEdit_47.text()
@@ -696,10 +732,27 @@ class Main(QMainWindow , MainUI):
 
         quantity = self.lineEdit_54.text()
 
+        # Get Date
+        date = datetime.now().strftime('%d-%m-%Y %H:%M')
+
+        # Get the Image
+        if use_book==1 : # User didnt add a picture
+
+            # Get image path
+            image = default_book_image
+
+        else : # User Add a picture
+
+            # Get image path
+            image = img_name[0]
+        
+
+
+
+        # Generate id for Book's row
         self.cur.execute("select * from books")
         id = len( self.cur.fetchall() ) +1
-        image = "None"
-        date = datetime.now().strftime('%d-%m-%Y %H:%M')
+        
         
         # Check is There another id same and fix it
         self.cur.execute("select * from books where id = '{}'".format(id))
@@ -708,16 +761,25 @@ class Main(QMainWindow , MainUI):
         if count_id > 0:
             id+=1
 
-        # Load Data to Database
+
+
+
+
+        #### Load Data to Database ####
         data = [
             (id, book_title, book_description, book_category,
              book_code, book_barcode, book_part_order,
              book_price, book_publisher, book_author, 
-             image, book_status, date, quantity, branch_id)
+            book_status, date, quantity, branch_id, image)
         ]
+    
         self.cur.executemany("insert into books values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",data)
 
-        # Add this Actions in History
+
+
+        #####################################
+        #### Add this Actions in History ####
+
         # Generate History id
         self.cur.execute("select * from history")
         history_id = len( self.cur.fetchall() ) +1
@@ -729,25 +791,31 @@ class Main(QMainWindow , MainUI):
         if count_id > 0:
             history_id+=1
 
+
+        # Insert data to database
         self.cur.executemany("insert into history values (?,?,?,?,?,?)",[(
             history_id, employee_id, "Add Book", date, branch_id ,book_title
         )])
 
-        # Save data in database
+        ###############################
+        #### Save data in database ####
         self.db.commit()
 
-        # Notification
+
+
+        ######################
+        #### Notification ####
         print("Book "+str(book_title)+" Added!")
         self.Show_All_Books()
 
 
         # Clear Fields
-        book_title = self.lineEdit_6.clear()
-        book_price = self.lineEdit_11.clear()
-        book_code = self.lineEdit_47.clear()
-        book_part_order = self.lineEdit_50.clear()
-        book_barcode = self.lineEdit_49.clear()        
-        book_description = self.textEdit.clear()
+        self.lineEdit_6.clear()
+        self.lineEdit_11.clear()
+        self.lineEdit_47.clear()
+        self.lineEdit_50.clear()
+        self.lineEdit_49.clear()        
+        self.textEdit.clear()
         self.lineEdit_54.clear()
 
 
@@ -759,42 +827,49 @@ class Main(QMainWindow , MainUI):
     def Edit_Book_Search(self):
         
         # Check title field is not empty
-        if ( len(self.lineEdit_9.text()) > 0 ):
-        # Clear fields
-            book_title = self.lineEdit_9.clear()
-            book_description = self.textEdit_3.clear()
-            book_price = self.lineEdit_48.clear()
-            book_code = self.lineEdit_12.clear()
-            book_part_order = self.lineEdit_51.clear()
+        if ( len(self.lineEdit_9.text()) > 0 ): # True --> not empty
 
-        ################################
-        #### Start from here
+        # Clear fields
+            self.lineEdit_9.clear()
+            self.textEdit_3.clear()
+            self.lineEdit_48.clear()
+            self.lineEdit_12.clear()
+            self.lineEdit_51.clear()
+
+
+        ##########################
+        #### Start from here ####
         code = self.lineEdit_8.text() # Get Book's Code
 
         # Check Code feild is not empty
-        if len(code) == 0:
-            #print("Please Enter Code first !") # is Empty
+        if len(code) == 0: # False --> code field is empty!
+
             self.statusBar().showMessage("Please Enter Code first !!") # Notification
 
-        else: # is not Empty
+        else: # True --> is not Empty
             
-            # Check the code is it in database or not
+            ################################################
+            #### Check the code is it in database or not ###
+
+            # Qeury to get data from database
             sql = "select * from books where code like {} and Branch = {}" 
             sql = sql.format(code, branch_id)
             self.cur.execute(sql)
 
+            # Count all of data there
             search_Items = len( self.cur.fetchall() )
-            print(search_Items)
-            if search_Items==0: # is it not in database
-                # print("There is not Book with code {} !".format(code))
+            print(search_Items) # print the count
+
+            if search_Items==0: # False --> is not in database
+
                 self.statusBar().showMessage("There is not Book with code {} !".format(code)) # Notification
 
-                
+            else : # True --> is it in database
 
-            else : # is it  in database
                 # Get data from database
                 self.cur.execute("select * from books where code like  '"+str(code)+"' and Branch = {}".format(branch_id))
                 data = self.cur.fetchone()
+                print(data[14])
 
                 # Load data to fields
                 book_title = self.lineEdit_9.setText(data[1])
@@ -806,6 +881,18 @@ class Main(QMainWindow , MainUI):
                 book_author = self.comboBox_10.setCurrentIndex(int(data[9]))
                 book_part_order = self.lineEdit_51.setText(str(data[6]))
                 quantity = self.lineEdit_55.setText(str(data[13]))
+
+                ####################
+                #### Load Image ####
+
+                # Get a binary image
+                image = data[14]
+                # Open The Image 
+                self.pixmap = QPixmap(image)
+
+                # Add Image to Label
+                self.label_20.setPixmap(self.pixmap)
+
 
 
 
@@ -2767,6 +2854,20 @@ class Main(QMainWindow , MainUI):
         self.tabWidget.setCurrentIndex(3)
         self.tabWidget_2.setCurrentIndex(0)
         self.Show_All_Books()
+
+        # Set defaut image
+        self.pixmap = QPixmap(default_book_image)
+
+        # Add Image to Label
+        self.label_19.setPixmap(self.pixmap)
+
+
+
+
+
+
+
+
     
     def Open_Clients_Tap(self):
         self.tabWidget.setCurrentIndex(4)

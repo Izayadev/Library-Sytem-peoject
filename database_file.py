@@ -65,6 +65,10 @@ class Books(Model):
     quantity = IntegerField(null=True)
     Branch = IntegerField(null=True)
 
+    # Book's Image
+    image = BlobField(null=True)
+
+
 
 
     class Meta:
@@ -91,6 +95,7 @@ class Employee(Model):
     Periority = IntegerField(null=True)
     Branch = IntegerField(null=True)
     Password = CharField(null=True)
+    image = CharField(null=True)
 
     class Meta:
         database = db # This model uses the 'Library_Database.db' database.
