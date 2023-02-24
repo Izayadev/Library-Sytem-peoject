@@ -11,13 +11,16 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.uic import loadUiType
 
-import sys , sqlite3 , Tools, login_frame, Database, TabWidget
-from xlsxwriter import *
+import sys , sqlite3 , Tools, login_frame, Database, TabWidget, ExcelFiles
+# from xlsxwriter import *
 
 
 MainUI,_ = loadUiType('main.ui')
 """ Handle Classes"""
 hpTool = TabWidget.DailyMovment()
+helpTool = TabWidget
+
+
 database = Database.ConnectSqlite3()
 print("Connected to Database.")
 
@@ -257,7 +260,7 @@ class Main(QMainWindow , MainUI):
 
         # Enable Permissions Acces
         if loginAsAdmin == True: # just my own user UwU
-            print("Welcome Admin... \nwait to set the permissions.")
+            print("Welcome Admin... \nWait to set the permissions.")
             
             # Admin -> All permissions
             self.adminPermissions()            
@@ -440,296 +443,29 @@ class Main(QMainWindow , MainUI):
         hpTool.showDailyBooks({'table':tableName})
 
 
-
-
-
-
-
-
-
-
-    def TodayUiFields(self):
-        """The data from the fields in UI.
-        its in this order
-        \n book title, client id, order type, to date, from date, current date."""
-        # Get Data from Feilds
-        book_title = self.lineEdit_4.text()
-        client_national_id = self.lineEdit_7.text()
-        type = self.comboBox.currentText()
-        to_date = self.lineEdit_10.text()
-        from_date = datetime.today().strftime('%d-%m-%Y %H:%M')
-        date = from_date
-
-        thisData = {
-            'book title':book_title, 'client id':client_national_id, 'order type':type,
-            'to date':to_date, 'from date':from_date, 'current date':date}
-
-        return thisData
-
-    def getBookStatus(self):
-        bookData = database.getOne("select ")
-
-    def Handle_To_Day_Work(self):
-        
-        # GEt data from fields
-        thisData = self.TodayUiFields()
-        
-        # Check is the book in database
-        self.cur.execute("select title from books where title = '{}' and Branch = {}".format(book_title, branch_id))
-        bookData = len( self.cur.fetchone() )
-        print("bookData "+str(bookData))
-        # # Get Client name
-        # self.cur.execute("select name from clients where national_id = '{}'".format(client_national_id))
-        # client_name = self.cur.fetchone()[0]
-
-        # # client_name += " id:{}".format(client_national_id)
-
-
-        # Check id Feild Empty
-        if len(book_title) <= 0:
-            print("Please Enter Book Title !!")
-
-        if len(client_national_id) <= 0:
-            print("Please Enter client ID !!")
-
-        if len(to_date) <= 0:
-            print("Please Enter date !!")
-
-
-        if len(book_title) > 0 and len(client_national_id) > 0 and len(to_date) > 0:
-            # Get Book's and Cleint data from database
-            self.cur.execute("select title from books where title like '{}'".format(book_title))
-            count_book = len( self.cur.fetchall() )
-
-            self.cur.execute("select name from clients where national_id = '{}'".format(client_national_id))
-            count_client = len( self.cur.fetchall() )
-            
-
-
-
-            # Check is there book or client in database
-            if count_book == 0:
-                print("There is no book with this {} name".format(book_title))
-            if count_client == 0:
-                print("There is no client whith this {} id".format(client_national_id))
-
-            if ( count_client != 0 and count_book != 0 ):
-
-                # Generate id
-                self.cur.execute("select * from daily_movments")
-                id = len( self.cur.fetchall() ) +1
-                
-                
-                # Check is There another id same and fix it
-                self.cur.execute("select * from daily_movments where id = '{}'".format(id))
-                count_id = len( self.cur.fetchall() )
-                
-                if count_id > 0:
-                    id+=1
-                
-
-
-                # Sort data
-                data = [
-                    (id, book_title, client_national_id,
-                    type, date, branch_id,
-                    from_date, to_date, employee_id)
-                ]
-
-
-                # Insert data in database
-                self.cur.executemany("insert into daily_movments values(?,?,?,?,?,?,?,?,?)",data)
-                
-                
-                # Add this Actions in History
-                # Generate History id
-                self.cur.execute("select * from history")
-                history_id = len( self.cur.fetchall() ) +1
-
-                # Check is There another id same and fix it
-                self.cur.execute("select * from books where id = '{}'".format(history_id))
-                count_id = len( self.cur.fetchall() )
-                
-                if count_id > 0:
-                    history_id+=1
-
-                self.cur.executemany("insert into history values (?,?,?,?,?,?)",[(
-                    history_id, employee_id, type, date, branch_id ,str(book_title)+" "+str(type)
-                )])
-
-                self.db.commit()
-
-                # Notifications
-                print("Done Daily Movments")
-
-                # Refreash Table data
-                self.Retrieve()
-
-        
-    # Retrieve data from database, show all daily movement in table
-    def Retrieve(self):
-        # self.tableWidget.insertRow(0) # create row
-        
-        # Get Data from Database.
-        print("branch_id="+str(branch_id))
-        if branch_id!=0: # thats users
-            self.cur.execute("select book_id, type, client_id, book_from, book_to from daily_movments where branch_id = {}".format(branch_id))
-            data = self.cur.fetchall()
-        else:
-            self.cur.execute("select book_id, type, client_id, book_from, book_to from daily_movments")
-            data = self.cur.fetchall()
-
-
-
-        # Insert data into table
-        for row , form in enumerate(data):
-            # Insert new Row
-            row_position = self.tableWidget.rowCount()
-            if row_position <= row:
-                self.tableWidget.insertRow(row_position)
-
-            for col, item in enumerate(form):
-                self.tableWidget.setItem(row, col, QTableWidgetItem(str(item)) )
-                col+=1 # to new column
-
-            
-
-        # Notification
-        print("Retrieve  Done")
-
-
-        
-
-
-
-
-    ################################################
-    #### Books
+    """===========================================================================
+    ======================== Book tab's functions ============================="""
 
     # Book tap filter to search in database
     def Book_filter_Search(self):
-        # Get data from fields
-        book_name = self.lineEdit_5.text()
-        category = self.comboBox_3.currentIndex()
-        
-        # Simple Varibale to get which one will search with
-        run=0 # 1 for category, 2 for book title , 3 for BOTH , 4 for ERROR
 
+        # VARIABLES
+        searchText = self.lineEdit_5.text()
+        table = self.tableWidget_3
+        thisData = {'search text':searchText, 'table':table, 'branch id':branch_id}
+
+        # RUN
+        helpTool.BookTab().searchAboutBook(thisData)
     
-        if len(book_name)<=0 and category!=0 : # category win
-            # Get data by category
-            self.cur.execute("select code, title, category_id, author_id, price from books where category_id = {}".format(category))
-            data = self.cur.fetchall() # data with category
-            run = 1
-
-        elif len(book_name)!=0 and category<=0 : # book title win
-            # Get data by book title
-            self.cur.execute("select code, title, category_id, author_id, price from books where title like '{}%'".format(book_name))
-            data = self.cur.fetchall()
-            run = 2
-
-            if len(data)==0: # Get ERROR
-                print("There is no book title like this {}".format(book_name))
-                run=4
-            else:
-                run = 2
-
-        
-        elif len(book_name)==0 and category==0 : # no one win
-            run = 4
-            
-
-        elif len(book_name)!=0 and category!=0 : # BOTH win:
-            # Get data by BOTH book title and category
-            self.cur.execute("select code, title, category_id, author_id, price from books where title like '%{}%' and category_id = {}".format(book_name, category))
-            data = self.cur.fetchall()
-            run = 3
-        
-        print(data)
-        # Run Code with run Variable
-        if run==4:
-            print("Please Enter data first !")
-        else:
-            # Clear table widget
-            rows = self.tableWidget_3.rowCount()
-
-            for i in range(rows):
-                self.tableWidget_3.removeRow(i)
-
-
-            # Insert data into table
-            for row , form in enumerate(data):
-                # Insert new Row
-                row_position = self.tableWidget_3.rowCount()
-                if row_position <= row:
-                    self.tableWidget_3.insertRow(row_position)
-
-                for col, item in enumerate(form):
-
-                    # Get real data name for category and author
-                    if col == 2:
-                        self.cur.execute("select category_name from category where id = '{}'".format(data[row][2]))
-                        self.tableWidget_3.setItem(row, col, QTableWidgetItem(str(self.cur.fetchone()[0])) )
-                    
-                    elif col == 3:
-                        self.cur.execute("select name from author where id = '{}'".format(data[row][3]))
-                        self.tableWidget_3.setItem(row, col, QTableWidgetItem(str(self.cur.fetchone()[0])) )
-                    
-                    else:
-                        self.tableWidget_3.setItem(row, col, QTableWidgetItem(str(item)) )
-                    
-                    col+=1 # to new column
-
-
-
-        
 
     # Show the Books in The Table.
     def Show_All_Books(self):
 
-        # self.tableWidget_3.insertRow(0) # create row
-        
-        # Get Data from Database.
-        if branch_id!=0: # thats users
-            self.cur.execute("select code, title, category_id, author_id, price from books where Branch = {}".format(branch_id))
-            data = self.cur.fetchall()
-        else:
-            self.cur.execute("select code, title, category_id, author_id, price from books")
-            data = self.cur.fetchall()
-        
+        # VARIABLES
+        thisData = {'branch id':branch_id, 'table':self.tableWidget_3}     
 
-    
-        
-
-        # Insert data into table
-        for row , form in enumerate(data):
-            # Insert new Row
-            row_position = self.tableWidget_3.rowCount()
-            if row_position <= row:
-                self.tableWidget_3.insertRow(row_position)
-
-            for col, item in enumerate(form):
-                
-                # Get real data name for category and author
-                if col == 2:
-                    self.cur.execute("select category_name from category where id = {}".format(data[row][2]))
-                    temp = self.cur.fetchone()[0]
-                    self.tableWidget_3.setItem(row, 2, QTableWidgetItem(str(temp)) )
-                
-                elif col == 3:
-                    self.cur.execute("select name from author where id = {}".format(data[row][3]))
-                    temp = self.cur.fetchone()[0]
-                    self.tableWidget_3.setItem(row, 3, QTableWidgetItem(str(temp) ))
-                
-                else:
-                    self.tableWidget_3.setItem(row, col, QTableWidgetItem(str(item)) )
-                col+=1 # to new column
-
-            
-
-        # Notification
-        print("Show All Books Done")
-
+        # RUN
+        helpTool.BookTab().getAllBooks(thisData)
 
 
     # Open a Dialog Window and Get Pecture for Books or a Profile
@@ -752,107 +488,46 @@ class Main(QMainWindow , MainUI):
         use_book = 0
 
 
-
-        
-
-
-
-
     # Add New Book to Database
     def Add_New_Book(self):
          
         # Get Data from GUI [Fields]
-        book_title = self.lineEdit_6.text()
-        book_price = self.lineEdit_11.text()
-        book_code = self.lineEdit_47.text()
-        book_part_order = self.lineEdit_50.text()
-        book_barcode = self.lineEdit_49.text()
+        bookTitle = self.lineEdit_6.text(); bookPrice = self.lineEdit_11.text()
+        bookCode = self.lineEdit_47.text(); bookPart = self.lineEdit_50.text()
         
-        book_description = self.textEdit.toPlainText()
-
-        book_category = self.comboBox_4.currentIndex()
-        book_publisher = self.comboBox_8.currentIndex()
-        book_author = self.comboBox_6.currentIndex()
-        book_status = self.comboBox_7.currentText()
-
-        quantity = self.lineEdit_54.text()
-
-        # Get Date
-        date = datetime.now().strftime('%d-%m-%Y %H:%M')
+        bookBarcode = self.lineEdit_49.text(); bookDescription = self.textEdit.toPlainText()
+        bookCategory = self.comboBox_4.currentText(); bookPublisher = self.comboBox_8.currentText()
+        
+        bookAuthor = self.comboBox_6.currentText(); bookStatus = self.comboBox_7.currentText()
+        bookQuantity = self.lineEdit_54.text()
 
         # Get the Image
         if use_book==1 : # User didnt add a picture
 
             # Get image path
-            image = default_book_image
+            bookImage = default_book_image
 
         else : # User Add a picture
 
             # Get image path
-            image = img_name[0]
+            bookImage = img_name[0]
         
 
+        # Sort data
+        thisData = {
+            'title':bookTitle, 'description':bookDescription, 'author':bookAuthor,
+            'category':bookCategory, 'publisher':bookPublisher, 'part':bookPart,
+            'price':bookPrice, 'code':bookCode, 'barcode':bookBarcode,
+            'status':bookStatus, 'quantity':bookQuantity, 'image':bookImage,
+            'branch id':branch_id, 'employee id':employee_id
+        }
+
+        # RUN
+        helpTool.BookTab().submitNewBook(thisData)
 
 
-        # Generate id for Book's row
-        self.cur.execute("select * from books")
-        id = len( self.cur.fetchall() ) +1
-        
-        
-        # Check is There another id same and fix it
-        self.cur.execute("select * from books where id = '{}'".format(id))
-        count_id = len( self.cur.fetchall() )
-        
-        if count_id > 0:
-            id+=1
-
-
-
-
-
-        #### Load Data to Database ####
-        data = [
-            (id, book_title, book_description, book_category,
-             book_code, book_barcode, book_part_order,
-             book_price, book_publisher, book_author, 
-            book_status, date, quantity, branch_id, image)
-        ]
-    
-        self.cur.executemany("insert into books values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",data)
-
-
-
-        #####################################
-        #### Add this Actions in History ####
-
-        # Generate History id
-        self.cur.execute("select * from history")
-        history_id = len( self.cur.fetchall() ) +1
-
-        # Check is There another id same and fix it
-        self.cur.execute("select * from books where id = '{}'".format(history_id))
-        count_id = len( self.cur.fetchall() )
-        
-        if count_id > 0:
-            history_id+=1
-
-
-        # Insert data to database
-        self.cur.executemany("insert into history values (?,?,?,?,?,?)",[(
-            history_id, employee_id, "Add Book", date, branch_id ,book_title
-        )])
-
-        ###############################
-        #### Save data in database ####
-        self.db.commit()
-
-
-
-        ######################
-        #### Notification ####
-        print("Book "+str(book_title)+" Added!")
+        # REFRESH
         self.Show_All_Books()
-
 
         # Clear Fields
         self.lineEdit_6.clear()
@@ -864,172 +539,30 @@ class Main(QMainWindow , MainUI):
         self.lineEdit_54.clear()
 
 
-        
-
-
-
     # Edit a Book and svae changes in database
     def Edit_Book_Search(self):
         
-        # Check title field is not empty
-        if ( len(self.lineEdit_9.text()) > 0 ): # True --> not empty
+        
+        # Sort data.
+        bookTitle = self.lineEdit_9.text()
 
-        # Clear fields
-            self.lineEdit_9.clear()
-            self.textEdit_3.clear()
-            self.lineEdit_48.clear()
-            self.lineEdit_12.clear()
-            self.lineEdit_51.clear()
-
-
-        ##########################
-        #### Start from here ####
-        code = self.lineEdit_8.text() # Get Book's Code
-
-        # Check Code feild is not empty
-        if len(code) == 0: # False --> code field is empty!
-
-            self.statusBar().showMessage("Please Enter Code first !!") # Notification
-
-        else: # True --> is not Empty
+        thisData = {'branch id':branch_id, 'book search':self.lineEdit_8, 'book title':self.lineEdit_9,
+        'book description':self.textEdit_3, 'book category':self.comboBox_5,
+        'book price':self.lineEdit_48, "book code":self.lineEdit_12,
+        "book publisher":self.comboBox_13, "book author":self.comboBox_10,
+        "book part":self.lineEdit_51, "book quantity":self.lineEdit_55, 'book status':self.comboBox_12,
+        'book image':self.label_20, 'pixmap':self.pixmap}
             
-            ################################################
-            #### Check the code is it in database or not ###
-
-            # Qeury to get data from database
-            sql = "select * from books where code like {} and Branch = {}" 
-            sql = sql.format(code, branch_id)
-            self.cur.execute(sql)
-
-            # Count all of data there
-            search_Items = len( self.cur.fetchall() )
-            print(search_Items) # print the count
-
-            if search_Items==0: # False --> is not in database
-
-                self.statusBar().showMessage("There is not Book with code {} !".format(code)) # Notification
-
-            else : # True --> is it in database
-
-                # Get data from database
-                self.cur.execute("select * from books where code like  '"+str(code)+"' and Branch = {}".format(branch_id))
-                data = self.cur.fetchone()
-                print(data[14])
-
-                # Load data to fields
-                book_title = self.lineEdit_9.setText(data[1])
-                book_description = self.textEdit_3.setPlainText(str(data[2]))
-                book_category = self.comboBox_5.setCurrentIndex(int(data[3]))
-                book_price = self.lineEdit_48.setText(str(data[7]))
-                book_code = self.lineEdit_12.setText(data[4])
-                book_publisher = self.comboBox_13.setCurrentIndex(int(data[8]))
-                book_author = self.comboBox_10.setCurrentIndex(int(data[9]))
-                book_part_order = self.lineEdit_51.setText(str(data[6]))
-                quantity = self.lineEdit_55.setText(str(data[13]))
-
-                ####################
-                #### Load Image ####
-
-                # Get a binary image
-                image = data[14]
-                # Open The Image 
-                self.pixmap = QPixmap(image)
-
-                # Add Image to Label
-                self.label_20.setPixmap(self.pixmap)
-
-
-
-
-                # simple hard code to get book status
-                status_index = 0
-                if data[11]=="New":
-                    status_index=0
-                elif data[11]=="Used":
-                    status_index=1
-                else:
-                    status_index=2   
-                book_status = self.comboBox_12.setCurrentIndex(status_index)
-                
-                # Notification
-                # print("Search done!")
-                self.statusBar().showMessage("Search done!") # Notification
-
-
-
+        # RUN
+        helpTool.BookTab().submitEditBook(thisData)
 
 
     # Save Changes from Edit Book in database
     def Save_Edit_Book(self):
-
-        code = self.lineEdit_8.text() # Get a code to search via 
         
-        # Load data to fields
-        book_title = self.lineEdit_9.text()
-        book_description = self.textEdit_3.toPlainText()
-        book_category = self.comboBox_5.currentIndex()
-        book_price = self.lineEdit_48.text()
-        book_code = self.lineEdit_12.text()
-        book_publisher = self.comboBox_13.currentIndex()
-        book_author = self.comboBox_10.currentIndex()
-        book_part_order = self.lineEdit_51.text()
-        book_status = self.comboBox_12.currentIndex()
-
-        quantity = self.lineEdit_55.text()
-
-
-
-
-        # Update to database
-        sql = """update books
-                set title = '{0}',
-                description = '{1}',
-                category_id = {2},
-                code = '{3}',
-                part_order = {4},
-                price = '{5}',
-                publisher_id = {6},
-                author_id = {7},
-                status = '{8}',
-                quantity = {9}
-                where code like '{code}'
-                """
-        sql = sql.format(
-            book_title, book_description, book_category,
-            book_code, book_part_order, book_price,
-            book_publisher, book_author, book_status, quantity,
-            code=code
-            )
-        
-        self.cur.execute(sql)
-
-
-        # Add this Actions in History
-        # Generate History id
-        self.cur.execute("select * from history")
-        history_id = len( self.cur.fetchall() ) +1
-        date = datetime.now().strftime('%d-%m-%Y %H:%M')
-
-
-        # Check is There another id same and fix it
-        self.cur.execute("select * from books where id = '{}'".format(history_id))
-        count_id = len( self.cur.fetchall() )
-        
-        if count_id > 0:
-            history_id+=1
-
-        self.cur.executemany("insert into history values (?,?,?,?,?,?)",[(
-            history_id, employee_id, "Edit Book", date, branch_id, book_title
-        )])
-
-        # Save data in database
-        self.db.commit()
-
-
-        #### Notification
-        # print("Edited!")
+        TabWidget.BookTab().submitChange()
+        # Notification
         self.statusBar().showMessage("Edited !!") # Notification
-
 
     # Delete a Book and Save th Changes in Database
     def Delete_Book(self):
@@ -1621,76 +1154,12 @@ class Main(QMainWindow , MainUI):
 
     # This for book tab
     def Book_Export_Report(self):
-        
-        # Get Data from Database.
-        self.cur.execute("select code, title, category_id, author_id, price from books")
-        data = self.cur.fetchall()
-        
-        # Load data into excel file
-        file_date = datetime.now().strftime('%d of %m')
+        """Export book's list to an Excel file."""
 
-        excel_file = Workbook('Book Export Report ('+str( file_date )+' ).xlsx')
-        sheet1 = excel_file.add_worksheet()
+        # RUN
+        ExcelFiles.BookReports().exportBookReport({'employee id':employee_id, 'branch id':branch_id})
 
-        # Add Formats
-        bold = excel_file.add_format({'bold':1})
-        money_format = excel_file.add_format({"num_format": '$#,##0'})
-        
-        # Format Columns
-        sheet1.set_column(0,3,18)
-
-        # Set Headers
-        sheet1.write('A1','Book Code', bold)
-        sheet1.write('B1','Book Title', bold)
-        sheet1.write('C1','Category', bold)
-        sheet1.write('D1','Author', bold)
-        sheet1.write('E1','Price', bold)
-
-        # Insert data from database to excel file
-        for row, form in enumerate(data):
-            index=row
-            row+=1
-            for col, item in enumerate(form):
-                # Get real data name for category and author
-                if col == 2: 
-                    self.cur.execute("select category_name from category where id = '{}'".format(data[index][2]))
-                    sheet1.write(row, col, self.cur.fetchone()[0])
-                elif col==3:
-                    self.cur.execute("select name from author where id = '{}'".format(data[index][3]))
-                    sheet1.write(row, col, self.cur.fetchone()[0])
-                elif col==4:
-                    sheet1.write(row, col, item, money_format)
-                    
-                else:
-                    sheet1.write(row, col, item)
-
-
-
-        # Close Excel file to save
-        excel_file.close()
-
-        # Add this Actions in History
-        # Generate History id
-        self.cur.execute("select * from history")
-        history_id = len( self.cur.fetchall() ) +1
-        date = datetime.now().strftime('%d-%m-%Y %H:%M')
-
-
-        # Check is There another id same and fix it
-        self.cur.execute("select * from books where id = '{}'".format(history_id))
-        count_id = len( self.cur.fetchall() )
-        
-        if count_id > 0:
-            history_id+=1
-
-        self.cur.executemany("insert into history values (?,?,?,?,?,?)",[(
-            history_id, employee_id, "Export Books", date, branch_id, 'None'
-        )])
-
-        # Save data in database
-        self.db.commit()
-
-
+        # NOTIFICATIONS
         print("Exported!")
 
 
@@ -2053,8 +1522,8 @@ class Main(QMainWindow , MainUI):
         # Clear Trash
         self.comboBox_25.clear() 
         self.comboBox_25.addItem("---------")
-        self.comboBox_3.clear() 
-        self.comboBox_3.addItem("---------")
+        # self.comboBox_3.clear() 
+        # self.comboBox_3.addItem("---------")
         self.comboBox_4.clear() 
         self.comboBox_4.addItem("---------")
         self.comboBox_5.clear() 
@@ -2068,7 +1537,7 @@ class Main(QMainWindow , MainUI):
         for category in categories:
             #print(category[0])
             self.comboBox_25.addItem(category[0])
-            self.comboBox_3.addItem(category[0])
+            # self.comboBox_3.addItem(category[0])
             self.comboBox_4.addItem(category[0])
             self.comboBox_5.addItem(category[0])
 
@@ -2987,7 +2456,6 @@ def main():
 
 
 if __name__ == '__main__':
-    print(login_frame.loginStatus)
     Show_Login()
     
     if login_frame.loginStatus == True :
