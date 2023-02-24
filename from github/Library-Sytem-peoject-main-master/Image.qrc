@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="images">
+    <file>Icons/username.png</file>
+    <file>bg_login2.jpeg</file>
+    <file>bkgr.jpeg</file>
+    <file>bk33.jpeg</file>
+  </qresource>
+</RCC>

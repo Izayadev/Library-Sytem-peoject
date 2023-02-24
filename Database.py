@@ -1,6 +1,8 @@
 # DATABASE CLASS
 import sqlite3
 
+from numpy import empty
+
 
 """=================================================
 ================== Sqlite3 ======================"""
@@ -32,6 +34,7 @@ class ConnectSqlite3():
         else:
             print("We Connot do this operator.")
 
+    
     # insert  many data into database
     def insertManyData(self,sql,data):
         """Insert a Many data More then > 3.
@@ -44,7 +47,6 @@ class ConnectSqlite3():
         else:
             print("We cannot do the operator!!.")
 
-
     #insert one thing to database.
     def insertOneData(self,sql,data):
         """Insert one thing to database.
@@ -56,6 +58,19 @@ class ConnectSqlite3():
         else:
             print("We cannot do the operator!!.")
 
+    # Update table in database.
+    def updateData(self, sql):
+        """Update data into its table
+        \nYou may use update table set data = value where exprition for example, then pass the argument data with your data."""
+        
+        if len(sql) != empty:
+            self.cur.execute(sql)
+            self.db.commit()
+        
+        else:
+            print("We cannot do the operator!!.")
+    
+    
     # Get one row of data from database.
     def getOne(self,sql):
         """Fetch one data from database."""
